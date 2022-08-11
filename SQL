@@ -353,7 +353,7 @@ alter table editoriales add primary key(editorial_id);
 alter table libros add primary key(libro_id);
 alter table ventas add primary key(local_id, factura_nro, libro_id);
 
-
+-- FIN
 
 
 
