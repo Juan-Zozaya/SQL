@@ -1,0 +1,192 @@
+use laboratorio;
+alter table clientes rename contactos;
+
+-- Desafio 2.1
+alter table clientes_neptuno
+modify IDCliente varchar(5) primary key,
+modify nombrecompania varchar(100) not null,
+modify pais varchar(15) not null;
+
+rename table clients to contactos; 
+
+alter table clientes
+modify cod_cliente varchar(7) primary key,
+modify empresa varchar(100) not null,
+modify ciudad varchar(25) not null,
+modify telefono int unsigned,
+modify responsable varchar(30);
+
+alter table pedidos
+modify numero_pedido int unsigned primary key,
+modify codigo_cliente varchar(7) not null,
+modify fecha_pedido date not null,
+modify Forma_pago enum ('contado','aplazado','tarjeta'),
+modify Enviado enum ('Si','No');
+
+alter table productos
+modify cod_producto int unsigned primary key,
+modify seccion varchar(20) not null,
+modify nombre varchar(40) not null,
+modify importado enum ('Verdadero','Falso'),
+modify origen varchar(25) not null,
+modify dia int unsigned not null,
+modify mes int unsigned not null,
+modify ano int unsigned not null;
+
+-- Desafio 2.2 era solo importar
+
+-- Desafio 2.3, 
+
+select * from clientes_neptuno;
+select nombrecompania, ciudad, pais from clientes_neptuno;
+
+select nombrecompania, ciudad, pais from clientes_neptuno
+order by pais;
+
+select nombrecompania, ciudad, pais from clientes_neptuno
+group by pais, ciudad;
+
+select nombrecompania, ciudad, pais from clientes_neptuno
+order by pais, ciudad
+limit 10; -- ver si aca puedo poner el limit antes del order.
+
+select nombrecompania, ciudad, pais from clientes_neptuno
+order by pais, ciudad
+limit 5 offset 10;
+
+-- Desafio 2.4
+select * from nacimientos
+where nacionalidad= 'extranjera';
+
+select * from nacimientos 
+where edad_madre<18
+order by edad_madre;
+
+select * from nacimientos
+where edad_madre=edad_padre;
+
+select * from nacimientos
+where edad_padre-edad_madre>40;
+
+select * from clientes_neptuno
+where pais='Argentina';
+
+select * from clientes_neptuno
+where pais <> 'Argentina'
+order by pais;
+
+select * from nacimientos
+where semanas < 20
+order by semanas desc;
+
+select * from nacimientos
+where sexo='Femenino' and estado_civil_madre='Soltera' and nacionalidad='extranjera' 
+and edad_madre=40;
+
+select * from clientes_neptuno
+where pais='Argentina' or pais='Brasil'or pais='venezuela'
+order by pais,ciudad;
+
+select * from nacimientos
+where semanas>=20 and semanas <=25 -- podria haber hecho where semanas between 20 and 25
+order by semanas;
+
+select * from nacimientos
+where comuna in (1101,3201,5605,8108,13120,15202)
+order by comuna;
+
+select * from clientes_neptuno
+where idcliente like ('C%');
+
+select ciudad from clientes_neptuno
+where ciudad like ('B____');-- verificar esto porque nose si va el %
+
+select * from nacimientos
+where hijos_total>10;
+
+-- Desafio maximo 2 parte 1
+select * from top_spotify;
+
+select artista, titulo, genero from top_spotify;
+
+select artista, titulo, genero from top_spotify
+order by genero;
+
+select artista, titulo, genero from top_spotify
+order by genero, artista;
+
+-- PARTE 2
+select artista, titulo, genero from top_spotify
+order by artista, titulo
+limit 10;
+
+select artista, titulo, genero from top_spotify
+order by artista, titulo
+limit 5 offset 10;
+
+select * from top_spotify
+where artista= 'MADONNA';
+
+select * from top_spotify
+where genero = 'pop'
+order by titulo;
+
+select * from top_spotify
+where genero = 'pop' and ano=2015
+order by artista,titulo;
+
+select * from top_spotify
+where genero = 'dance pop' and ano<2011
+order by titulo;
+
+-- parte 3
+select * from autores;
+
+select * from autores
+where ciudad='Buenos aires';
+
+select * from libros
+where precio>30
+order by precio desc;
+
+select * from autores
+where provincia <> 'Ba'
+order by provincia;
+
+select * from libros
+where categoria= 'cuentos' and precio<20
+order by titulo;
+
+select * from libros
+where categoria= 'novelas' or categoria='ensayos'
+order by titulo;
+
+select * from libros
+where precio between 20 and 35
+order by precio;
+
+select * from autores
+where nombre in ('Jorge Luis', 'Victoria', 'Ernesto', 'Adolfo')
+order by nombre;
+
+select * from libros
+where titulo like '%mundo%'
+order by titulo;
+
+select * from libros
+where titulo like '%de%'
+order by titulo;
+
+select * from libros
+where precio is null
+order by titulo;
+
+
+
+
+
+
+
+
+
+
