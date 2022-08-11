@@ -355,7 +355,7 @@ alter table ventas add primary key(local_id, factura_nro, libro_id);
 
 
 
-
+s
 
 
 
