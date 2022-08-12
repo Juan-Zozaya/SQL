@@ -1,0 +1,64 @@
+Desafio 3.1
+1.Generar un backup de la base de datos LABORATORIO (completa) en un único archivo llamado BACKUP LABORATORIO BD. Este archivo de respaldo debe generarse en el Escritorio de Windows. 
+Finalizado el proceso, verificar que el archivo de respaldo se haya generado antes de continuar con los siguientes puntos. 
+2. Eliminar la base de datos LABORATORIO. 
+3. Restaurar el archivo BACKUP LABORATORIO BD. Verificar, después de la restauración, que se haya generado la base de datos. 
+
+Desafio 3.2
+1. Utilizar la tabla CLIENTES_NEPTUNO y generar una consulta que muestre las columnas IDCLIENTE y NOMBRECOMPANIA. En el resultado de la consulta, se debe mostrar una nueva columna llamada UBICACION que concatene las columnas DIRECCION, CIUDAD y PAIS, separando 
+los valores de estos campos por un guión. 
+Para este primer ejercicio, utilizar la función CONCAT. 
+2. Repetir el ejercicio anterior, utilizando la función CONCAT_WS. 
+3. Modificar el ejercicio anterior para mostrar en mayúsculas los valores cargados en el campo NOMBRECOMPANIA. Esta columna debe mostrarse con el nombre EMPRESA. 
+4. Modificar el ejercicio anterior para mostrar los valores cargados en el campo IDCLIENTE en minúsculas. Esta columna debe mostrarse con el nombre CODIGO. 
+5. Utilizar la tabla NACIMIENTOS y generar una consulta que muestre la columna FECHA. En el resultado de la consulta, se debe mostrar una nueva columna con el nombre SEXO que muestre la inicial de los datos cargados en el campo SEXO y otra columna con el nombre TIPO que muestre la inicial de los datos cargados en el campo TIPO_PARTO. 
+6. Utilizar la tabla CLIENTES_NEPTUNO y genera una consulta que muestre todos los campos de la tabla. Agregar una nueva columna a la consulta con el nombre CODIGO. La misma, debe concatenar la primera letra del campo CIUDAD y la primera y las 2 últimas letras del campo PAIS. Los datos de esta nueva columna se deben mostrar en mayúsculas. 
+7.	Utilizar la tabla NACIMIENTOS y generar una consulta que muestre las 5 primeras columnas de la tabla. Agregar una nueva columna a la consulta con el nombre MES que tome el mes de nacimiento de los bebés del campo FECHA. Ordenar el resultado de menor a mayor por los valores de la columna MES. 
+8.	Utilizar la tabla NACIMIENTOS y generar una consulta que muestre las siguientes columnas: SEXO, FECHA y TIPO_PARTO. En el resultado de la consulta, se debe mostrar una nueva columna llamada NACIONALIDAD donde se reemplazan los valores Chilena de la columna NACIONALIDAD original por Ciudadana. 
+
+Desafio 3.3
+1. Utilizando la tabla PEDIDOS_NEPTUNO, obtener una lista de todos aquellos pedidos efectuados a lo largo del año 1998. 
+2. Utilizando la tabla PEDIDOS_NEPTUNO, obtener una lista de todos aquellos pedidos efectuados durante los meses de agosto
+y septiembre del año 1997. 
+3. Utilizando la tabla PEDIDOS_NEPTUNO, obtener una lista de todos aquellos pedidos efectuados el primer día de cada mes de cualquier año. 
+4. Utilizar la tabla PEDIDOS_NEPTUNO y obtener una lista de todos los registros contenidos en la tabla. En una nueva columna llamada DIAS TRANSCURRIDOS, mostrar la cantidad de días transcurridos desde la fecha en que fue realizado cada pedido, al día de hoy. 
+5. Modifica la consulta anterior y agregar otra columna con el nombre DIA, que refleje el nombre del día en el que se efectuó cada uno de los pedidos. 
+6. Modificar la consulta anterior, agregando otra columna con el nombre DIA DEL AÑO, que refleje el número del día del año en el que se efectuó cada uno de los pedidos.
+7. Modificar la consulta anterior y agregar otra columna con el nombre MES, que refleje el nombre del mes del año en el que se efectuó cada uno de los pedidos.
+8. Modificar la consulta anterior y agregar otra columna llamada PRIMER VENCIMIENTO que calcule el primer vencimiento de cada factura, suponiendo que dicho vencimiento es a los 30 días de haber sido emitida. 
+9. Modificar la consulta anterior y agregar otra columna llamada SEGUNDO VENCIMIENTO que calcule el segundo vencimiento de cada factura, suponiendo que dicho vencimiento es a los 2 meses de haber sido emitida. 
+
+Desafio 3.4
+1.	Utilizar la tabla PEDIDOS_NEPTUNO y obtener una lista de todos los registros cargados en la tabla. Generar una nueva columna con el nombre IVA que calcule el 21% del cargo de cada pedido, obteniendo un valor numérico que, como máximo, contenga 2 decimales. 
+2.	Modificar la consulta anterior, agregando una nueva columna con el nombre NETO, que calcule el total a pagar por cada cliente por las compras realizadas (es decir, sumándole el IVA al cargo original, manteniendo como máximo 2 decimales). 
+3. Modificar la consulta anterior, agregando una nueva columna con el nombre REDONDEO A FAVOR CLIENTE que devuelva el valor entero inferior del neto calculado anteriormente. 
+4. Modificar la consulta anterior, agregando una nueva columna con el nombre REDONDEO A FAVOR EMPRESA que devuelva el valor entero superior del neto antes calculado. 
+
+Desafio 3.5
+1.	Calcular la cantidad de registros cargados en la tabla PEDIDOS_NEPTUNO. 
+2.	Calcular la cantidad de pedidos cargados en la tabla PEDIDOS_NEPTUNO que hayan sido entregados por el transportista con el nombre SPEEDY EXPRESS. La columna en la que se obtiene el resultado debe mostrarse con el nombre ENTREGAS SPEEDY EXPRESS. 
+3. Calcular la cantidad de pedidos cargados en la tabla PEDIDOS_NEPTUNO que hayan sido atendidos por empleados cuyo apellido comience con la letra C. La columna en la que se obtiene el resultado debe mostrarse con el nombre VENTAS. 
+4. Calcular el precio promedio de todos los productos cargados en la tabla llamada PRODUCTOS_NEPTUNO. La columna del resultado, debe mostrarse con el nombre PRECIO PROMEDIO. El resultado debe mostrar, como máximo, sólo 2 decimales. 
+5.	Modificar la consulta anterior para obtener el precio más bajo de la tabla. La columna en la que se obtiene el resultado debe mostrarse con el nombre PRECIO INFERIOR. 
+6.	Modificar la consulta anterior para obtener el precio más alto de la tabla. La nueva columna debe mostrarse con el nombre PRECIO MAXIMO. 
+7. Generar una consulta en base a la tabla PRODUCTOS_NEPTUNO que muestre el precio más alto correspondiente a cada categoría. La columna en la que se obtiene dicho precio debe mostrarse con el nombre PRECIO MAXIMO. La columna que muestra las categorías debe mostrarse con el nombre CATEGORIA. 
+8. Calcular la cantidad de entregas efectuadas por cada transportista, utilizando la tabla PEDIDOS_NEPTUNO. La columna en la que se obtienen los resultados debe mostrarse con el nombre ENTREGAS. 
+9.	Utilizar la tabla NACIMIENTOS y calcular la cantidad de nacimientos según el sexo de los bebés. La columna en la que se obtienen los resultados debe mostrarse con el nombre NACIMIENTOS. 
+10.	Utilizando la tabla PEDIDOS_NEPTUNO, calcular el total de gastos por cliente. La columna en la que se obtienen los resultados debe mostrarse con el nombre TOTAL GASTOS y debe mostrar como máximo 2 decimales. La columna en la que figuran los nombres de los clientes debe tener el título CLIENTE. 
+11. Utilizando la tabla PRODUCTOS, calcular la cantidad de productos pertenecientes a cada sección. La columna en la que se obtienen los resultados debe mostrarse con el nombre CANTIDAD. Ordenar la consulta de mayor a menor según los valores de la columna CANTIDAD. 
+12. Utilizar la tabla PEDIDOS_NEPTUNO y calcular la cantidad de ventas efectuadas por mes y año. Las columnas deben mostrarse con los nombres AÑO, MES y VENTAS respectivamente. Ordenar el resultado por año y mes, para obtener un listado cronológico de las ventas. 
+13. Utilizar la tabla PEDIDOS_NEPTUNO y calcular las siguientes estadísticas: 
+A.	El total facturado por empleado. 
+B.	El promedio de facturación por empleado. 
+C.	La mejor venta efectuada por cada empleado. 
+D.	La peor venta efectuada por cada empleado. 
+E.	La cantidad de ventas efectuadas por cada empleado. 
+F.	 Tener en cuenta las siguientes especifi- caciones: las columnas deben recibir los nombres FACTURACION, PROMEDIO, MEJOR VENTA, PEOR VENTA y VENTAS. Las columnas llamadas FACTURACION y PROMEDIO deben mostrar, como máximo, 2 decimales. 
+
+
+
+
+ 
+
+
+
