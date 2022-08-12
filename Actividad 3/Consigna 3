@@ -55,6 +55,31 @@ D.	La peor venta efectuada por cada empleado.
 E.	La cantidad de ventas efectuadas por cada empleado. 
 F.	 Tener en cuenta las siguientes especifi- caciones: las columnas deben recibir los nombres FACTURACION, PROMEDIO, MEJOR VENTA, PEOR VENTA y VENTAS. Las columnas llamadas FACTURACION y PROMEDIO deben mostrar, como máximo, 2 decimales. 
 
+Actividad 3.6
+Parte 1
+1.	Generar una lista en la que se muestren todos los artistas y las canciones de la tabla TOP SPOTIFY. El nombre de cada artista y el título de la canción deben mostrarse separados con un guión, en una columna llamada CANCIÓN. Utilizar la función CONCAT para llevar a cabo este ejercicio. Ordenar la lista resultante de forma alfabética, por la columna CANCIÓN. Esta consulta, además, debe mostrar el campo GENERO. 
+2.	Modificar la consulta anterior para obtener el mismo resultado con la función CONCAT_WS. 
+3. Modificar la consulta anterior para mostrar los géneros en mayúsculas. 
+4. Agregar a la consulta anterior una columna con el nombre AÑOS en la que se calcule la cantidad de años transcurridos desde que se lanzó cada una de las canciones al 
+año actual. 
+5. Generar una consulta que calcule la cantidad de registros que figuran en la tabla TOP SPOTIFY. El resultado debe mostrarse en una columna con el nombre CANCIONES. 
+6.	Generar una consulta que muestre la cantidad de canciones lanzadas al mercado por año. 
+7.	Modificar la consulta anterior para no mostrar aquellos años en los que se hayan lanzado menos de 50 canciones. 
+Parte 2
+1.	Utilizar la base de datos LIBRERIA y generar una lista en la que se muestren todos los autores y la provincia en la que nacieron.
+El apellido y el nombre de cada autor deben mostrarse separados con una coma y un espacio en una columna llamada AUTOR. Utilizar la función CONCAT para llevar a cabo este ejercicio. Ordenar alfabéticamente los apellidos resultantes. 
+2.	Modificar la consulta anterior para obtener el mismo resultado con la función CONCAT_WS. 
+3. Modificar la consulta anterior para mostrar los nombres de los autores en mayúsculas. 
+4. Modificar la consulta anterior para mostrar únicamente la inicial del nombre del autor y su apellido. 
+5. Generar una columna con el nombre INGRESO en la que se muestren todos los empleados y el año en el que ingresaron a trabajar a la empresa. El apellido y el nombre de cada empleado deben mostrarse separados con una coma y un espacio en una columna con el nombre EMPLEADO. Utilizar la función CONCAT para llevar a cabo este ejercicio. Ordenar el resultado de la consulta de mayor a menor según los años de ingreso de cada empleado. 
+Parte 3
+1.	Modificar la consulta anterior para agregar una columna con el nombre ANTIGÜEDAD. Esta deberá calcular la cantidad de años de antigüedad de cada empleado dentro de la empresa al día de hoy. 
+2.	Generar una consulta que permita obtener el precio más bajo de la tabla LIBROS. El resultado se debe mostrar en una columna con el nombre MENOR PRECIO. 
+3. Modificar la consulta anterior para agregar una columna que calcule el precio más alto de la tabla LIBROS. Mostrar el resultado en una columna con el nombre MAYOR PRECIO. 
+4. Modificar la consulta anterior para agregar una columna que calcule el precio promedio de todos los libros. Mostrar el resultado en una columna con el nombre PRECIO PROMEDIO. El promedio resultante debe mostrar 2 decimales como máximo. 
+5.	Generar una consulta que permita obtener el precio más bajo, el más alto y el promedio de los libros pertenecientes a cada categoría. 
+6.	Modificar la consulta anterior para no mostrar la categoría “SIN ASIGNAR”. 
+
 
 
 
