@@ -169,7 +169,7 @@ Count(empleado) as 'CANTIDAD DE VENTAS'
 from pedidos_neptuno
 group by empleado;
 
--- Desafio mayor 3
+-- Actividad 3.6
 -- Parte 1
 select * from top_spotify;
 
