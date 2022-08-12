@@ -1,0 +1,278 @@
+-- DESAFIO 3.2
+use laboratorio;
+select IDcliente, nombrecompania from clientes_neptuno;
+
+select IDcliente, nombrecompania,
+concat(direccion,'-',ciudad,'-',pais) as UBICACION from clientes_neptuno;
+
+select IDcliente, nombrecompania,
+concat_ws('-',direccion,ciudad,pais) as UBICACION from clientes_neptuno;
+
+select IDcliente, upper(nombrecompania) as empresa,
+concat_ws('-',direccion,ciudad,pais) as UBICACION from clientes_neptuno;
+
+select lower(IDcliente) as CODIGO , upper(nombrecompania) as empresa,
+concat_ws('-',direccion,ciudad,pais) as UBICACION from clientes_neptuno;
+
+SELECT fecha,
+substring(sexo,1,1) as SEXO,
+substring(tipo_parto,1,1) as TIPO
+from nacimientos;
+
+select *,
+upper(concat(left(ciudad,1),left(pais,1),right(pais,2))) as CODIGO
+from clientes_neptuno;
+-- otra froma de escribirlo
+select *,
+upper(concat(substring(ciudad,1,1),substring(pais,1,1),right(pais,2))) as CODIGO
+from clientes_neptuno;
+-- --------------------------
+
+SELECT SEXO, FECHA, TIPO_PARTO, ATENC_PART, LOCAL_PART,
+substring(fecha,4,2) as MES
+from nacimientos
+ORDER BY mes;
+
+SELECT SEXO, FECHA, TIPO_PARTO,
+replace(nacionalidad,'Chilena','Ciudadana') AS NACIONALIDAD
+from nacimientos;
+
+-- Desafio 3.3
+
+select * from pedidos_neptuno
+where year(fechapedido) = 1998; 
+
+select * from pedidos_neptuno
+where year(fechapedido) = 1997 and month(fechapedido) between 8 and 9;
+
+select * from pedidos_neptuno
+where day (fechapedido) =1;
+
+select *, datediff(curdate(),fechapedido) as 'Dias Transcurridos' from pedidos_neptuno;
+
+select *, datediff(curdate(),fechapedido) as 'Dias Transcurridos',
+dayname(fechapedido) as 'DIA'  from pedidos_neptuno;
+
+select *, datediff(curdate(),fechapedido) as 'Dias Transcurridos',
+dayname(fechapedido) as 'DIA',
+ dayofyear(fechapedido) as 'Dia del año' from pedidos_neptuno;
+ 
+ select *, datediff(curdate(),fechapedido) as 'Dias Transcurridos',
+dayname(fechapedido) as 'DIA',dayofyear(fechapedido) as 'Dia del año',
+monthname(fechapedido) as 'MES' from pedidos_neptuno;
+ 
+  select *, datediff(curdate(),fechapedido) as 'Dias Transcurridos',
+dayname(fechapedido) as 'DIA',dayofyear(fechapedido) as 'Dia del año',
+monthname(fechapedido) as 'MES',
+adddate(fechapedido, interval 30 day)as 'PRIMER VENCIMIENTO' from pedidos_neptuno;
+
+ select *, datediff(curdate(),fechapedido) as 'Dias Transcurridos',
+dayname(fechapedido) as 'DIA',dayofyear(fechapedido) as 'Dia del año',
+monthname(fechapedido) as 'MES',
+adddate(fechapedido, interval 30 day)as 'PRIMER VENCIMIENTO' from pedidos_neptuno;
+ 
+  select *, datediff(curdate(),fechapedido) as 'Dias Transcurridos',
+dayname(fechapedido) as 'DIA',dayofyear(fechapedido) as 'Dia del año',
+monthname(fechapedido) as 'MES',
+adddate(fechapedido, interval 30 day)as 'PRIMER VENCIMIENTO',
+adddate(fechapedido, interval 60 day) as 'SEGUNDO VENCIMIENTO' from pedidos_neptuno;
+
+-- Desafio 3.4
+select *, round(cargo*0.21) as 'IVA' from pedidos_neptuno;
+
+select *, round(cargo*0.21,2) as 'IVA',
+round(CARGO*1.21,2) as 'NETO'  from pedidos_neptuno;
+
+select *, round(cargo*0.21,2) as 'IVA',
+round(CARGO*1.21,2) as 'NETO',
+floor(ROUnd(cargo*1.21,2)) as 'REDONDEO A FAVOR DEL CLIENTE' from pedidos_neptuno;
+
+select *, round(cargo*0.21,2) as 'IVA',
+round(CARGO*1.21,2) as 'NETO',
+floor(ROUnd(cargo*1.21,2)) as 'REDONDEO A FAVOR DEL CLIENTE',
+ceil(Round(cargo*1.21,2)) as 'REDONDEO A FAVOR DE EMPRESA' from pedidos_neptuno; 
+
+
+-- esto es tema aparte de importacion de tabala y toqueteo con los deletes
+SET SQL_SAFE_UPDATES = 0;
+delete from clientes_neptuno where IDCliente='IDCliente';
+select* from clientes_neptuno;
+SET SQL_SAFE_UPDATES = 1;
+-- -----------------------------------------
+-- DESAFIO 3.5
+
+select count(*) from pedidos_neptuno;
+select * from pedidos_neptuno;
+ 
+select count(transportista) as 'Entregas Speedy Express' from pedidos_neptuno
+ where transportista= 'Speedy express';
+ 
+ select count(empleado) as 'VENTAS' from pedidos_neptuno
+ where empleado like ('c%');
+ 
+select round(avg (preciounidad),2) as 'PRECIO PROMEDIO'
+from productos_neptuno;
+
+select round(min(preciounidad),2) as 'PRECIO INFERIOR', round(avg (preciounidad),2) as 'PRECIO PROMEDIO'
+from productos_neptuno;
+
+
+select round(min(preciounidad),2) as 'PRECIO INFERIOR', 
+round(avg (preciounidad),2) as 'PRECIO PROMEDIO',
+round(max(preciounidad),2) as 'PRECIO MAXIMO'
+from productos_neptuno;
+
+select nombrecategoria as 'CATEGORIA',
+max(preciounidad) as 'PRECIO MAXIMO' from productos_neptuno
+group by categoria;
+select * from pedidos_neptuno;
+select transportista,
+count(transportista) as 'ENTREGAS' from pedidos_neptuno
+group by transportista;
+-- otra froma de escribirlo
+select transportista,
+count(Idpedido) as 'ENTREGAS' from pedidos_neptuno
+group by transportista;
+-- -------------
+select * from nacimientos;
+select sexo, count(sexo) as NACIMIENTOS
+from nacimientos group by sexo;
+
+select * from pedidos_neptuno;
+select nombrecompania as 'CLIENTE', round(sum(cargo),2) as 'total gastos'
+from pedidos_neptuno
+group by cliente;
+
+select * from productos;
+
+select seccion,
+count(seccion) as CANTIDAD
+from productos
+group by seccion
+order by cantidad desc;
+
+select year(fechapedido) as 'Año',
+monthname(fechapedido) as 'MES',
+count(IDPEDIDO) as 'VENTAS'
+from pedidos_neptuno
+group by año,mes
+order by año,mes;
+
+
+select * from pedidos_neptuno;
+select empleado,
+round(sum(cargo),2) as 'TOTAL FACTURADO',
+round(avg(cargo),2) as 'Promedio de facturacion',
+max(cargo) as 'LA MEJOR VENTA',
+min(cargo) as 'LA PEOR VENTA',
+Count(empleado) as 'CANTIDAD DE VENTAS'
+from pedidos_neptuno
+group by empleado;
+
+-- Desafio mayor 3
+-- Parte 1
+select * from top_spotify;
+
+select genero,
+concat(artista,'-',titulo) as 'CANCION'
+from top_spotify
+order by cancion;
+
+select genero,
+concat_ws('-',artista,titulo) CANCION
+from top_spotify
+order by cancion;
+
+select upper (genero),
+concat_ws('-',artista,titulo) as 'CANCION'
+from top_spotify
+order by cancion;
+
+select * from top_spotify;
+-- nose porque no funciona con esto
+select upper (genero),
+concat_ws('-',artista,titulo) as 'CANCION',
+timestampdiff(year,ano,curdate()) as 'años'
+from top_spotify
+order by cancion
+-- -------------
+select upper (genero),
+concat_ws('-',artista,titulo) as 'CANCION',
+year(curdate()) - ano as 'ANOS'
+from top_spotify
+order by cancion;
+
+select count(*) as canciones from top_spotify;
+
+select ano, count(titulo) as Canciones
+from top_spotify
+group by ano;
+
+select ano, count(titulo) as Canciones
+from top_spotify
+group by ano
+having canciones >= 50; -- uso having porque el count es una funcion 
+
+-- PARTE 2
+select concat(nombre,', ',Apellido) as 'AUTOR',
+provincia
+from autores
+order by apellido;
+
+select concat_ws(', ',nombre,Apellido) as 'AUTOR',
+provincia
+from autores
+order by apellido;
+
+select upper(concat_ws(', ',nombre,Apellido)) as 'AUTOR',
+provincia
+from autores
+order by apellido;
+
+select upper(concat_ws(', ',left(nombre,1),Apellido)) as 'AUTOR',
+provincia
+from autores
+order by apellido;
+
+select concat_ws(', ',nombre,apellido) as EMPLEADO,
+year(fecha_ingreso) as 'INGRESO'
+from empleados
+order by Ingreso desc;
+
+-- PARTE 3
+select concat_ws(', ',nombre,apellido) as EMPLEADO,
+year(fecha_ingreso) as 'INGRESO',
+timestampdiff(year,fecha_ingreso,curdate()) antiguedad
+from empleados
+order by Ingreso desc;
+
+select min(precio) as 'MENOR PRECIO' from libros;
+
+select min(precio) as 'MENOR PRECIO', max(precio) as 'MAYOR PRECIO' from libros;
+
+select min(precio) as 'MENOR PRECIO', 
+max(precio) as 'MAYOR PRECIO',
+round(avg(precio),2) as 'PRECIO PROMEDIO'
+from libros;
+
+select categoria,
+min(precio) as 'MENOR PRECIO', 
+max(precio) as 'MAYOR PRECIO',
+round(avg(precio),2) as 'PRECIO PROMEDIO'
+from libros
+group by categoria;
+
+select categoria,
+min(precio) as 'MENOR PRECIO', 
+max(precio) as 'MAYOR PRECIO',
+round(avg(precio),2) as 'PRECIO PROMEDIO'
+from libros
+group by categoria
+having categoria<>'sin asingar';
+
+
+
+
+
+
+ 
