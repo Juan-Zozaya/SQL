@@ -1,0 +1,75 @@
+Actividad 4.1
+1. Generar, a partir de la tabla NACIMIENTOS, una nueva tabla con el nombre VARONES con todos los campos de la tabla original y copia en esta nueva tabla todos los registros en los que figure el sexo MASCULINO. Al ejecutar la consulta, debería generarse la tabla con 98.397 filas. No olvidar actualizar los esquemas para verificar la creación de 
+la tabla dentro de la base de datos. 
+2. Generar, a partir de la tabla NACIMIENTOS, una nueva tabla con el nombre MUJERES con todos los campos de la tabla original y copiar en esta nueva tabla todos los registros en los que figure el sexo FEMENINO. Al ejecutar la consulta, debería generarse la tabla con 94.763 filas. Actualizar los esquemas para verificar la creación de la tabla dentro de la base de datos.
+3. Generar, a partir de la tabla NACIMIENTOS, una nueva tabla con el nombre INDETERMINADOS con todos los campos de la tabla original y copiar en esta nueva tabla todos los registros en los que figure el sexo INDETERMINADO. Al ejecutar la consulta, debería generarse la tabla con 24 filas. No olvidar actualizar los esquemas para verificar la creación de la tabla dentro de la base de datos. 
+4. Eliminar la tabla NACIMIENTOS. 
+
+Actividad 4.2
+1.	Actualizar la tabla CLIENTES_NEPTUNO. Cuando figure el valor ESTADOS UNIDOS en el campo PAIS, cambiar dicho valor por USA. Para verificar el cambio realizado, mostrar el contenido de la tabla CLIENTES_NEPTUNO. 
+2.	Actualizar la tabla CLIENTES_NEPTUNO para mostrar todos los valores del campo NOMBRECOMPANIA en mayúsculas. Para verificar el cambio realizado, mostrar el contenido de la tabla CLIENTES_NEPTUNO. 
+3.	Actualizar la tabla CLIENTES_NEPTUNO para mostrar todos los valores de los campos CIUDAD y PAIS en mayúsculas. Mostrar el contenido de la tabla CLIENTES_NEPTUNO para verificar el cambio llevado a cabo.
+4.	En la tabla EMPLEADOS generar una nueva columna llamada NOMBRE_EMPLEADO
+que admita cadenas de texto con un máximo de 30 caracteres. Ubica esta columna a la derecha del campo IDEMPLEADO. Completar esta nueva columna concatenando los valores cargados en los campos APELLIDOS y NOMBRE, separando dichos valores por una coma y un espacio. Eliminar las columnas APELLIDOS y NOMBRE. Mostrar el contenido de la tabla EMPLEADOS para verificar el cambio llevado a cabo. 
+5.	En la tabla CLIENTES generar una nueva columna con el nombre TIPO que admita cadenas de texto con un máximo de 3 caracteres. Esta columna debe ubicarse
+al final de la tabla. Completar esta nueva columna estableciendo el valor VIP para todos aquellos clientes que residan en la ciudad de MADRID. Para verificar el cambio llevado a cabo, mostrar el contenido de la tabla CLIENTES. 
+6.	Dado que todos los clientes que figuran en la tabla CLIENTES residen en España, agregar el prefijo +34- a cada uno de los teléfonos que figuran en el campo TELEFONO. En caso de que un cliente no tuviera el teléfono cargado, a ese teléfono no se le debería agregar el prefijo. Mostrar el contenido de la tabla CLIENTES para verificar el cambio realizado. 
+7.	En la tabla PRODUCTOS generar una nueva columna con el nombre FECHA que admita la carga de fechas. Completar la nueva columna con fechas coherentes, concatenando los campos DIA, MES y ANO. Cargados los datos en la nueva columna, eliminar las columnas originales (DIA, MES y ANO). Además, actualizar el campo ORIGEN de manera que, donde figure el valor ESPANA, sea reempla- zado por ESPAÑA. Mostrar el contenido de la tabla PRODUCTOS para verificar el cambio llevado a cabo. 
+8.	Actualizar el campo SUSPENDIDO de la tabla PRODUCTOS_NEPTUNO de manera que: 
+A.	Donde figure el valor 0, éste se reemplace por la palabra NO. 
+B.	Donde figure el valor 1, éste se reemplace por la palabra SI. 
+C.	Tener en cuenta que el campo SUSPENDIDO es de tipo INT actualmente. Cambiar el tipo de dato para que admita el reemplazo. 
+D.	Para verificar el cambio llevado a cabo, mostrar el contenido de la tabla PRODUCTOS_NEPTUNO 
+9.	Actualizar los precios de todos los productos de la tabla PRODUCTOS_NEPTUNO, recargándolos un 10% y manteniendo un total de 2 decimales para cada uno de los precios. Mostrar el contenido de la tabla PRODUCTOS_NEPTUNO para verificar el cambio llevado a cabo. 
+10.	Observar la tabla PROVEEDORES y su contenido. Para todos aquellos proveedores que no tengan cargado un valor en el campo REGION, mostrar el valor NULL en dicho campo. Mostrar el contenido de la tabla PROVEEDORES para verificar el cambio llevado a cabo. 
+11.	Observar el contenido de la tabla CLIENTES. Actualizar el campo CIUDAD de manera que todos los valores cargados en esta columna muestren la primera letra en mayúsculas y el resto en minúsculas. Mostrar el contenido de la tabla PROVEEDORES para verificar el cambio llevado a cabo. 
+12.	Generar una nueva tabla con el nombre PRODUCTOS_SUSPENDIDOS a partir de la tabla PRODUCTOS_NEPTUNO. Volcar en esta nueva tabla todos los campos de la tabla PRODUCTOS_NEPTUNO, pero sólo aquellos registros en los que en el campo SUSPENDIDO figure la palabra SI. Mostrar el contenido de la tabla PRODUCTOS_SUSPENDIDOS una vez generada. La nueva tabla debería contener 8 productos (registros). 
+
+Actividad 4.3
+1. Desde ahora, todos los productos provistos por el proveedor 1 pasan a estar suspendidos por tiempo indeterminado. Por lo tanto: 
+a. Ejecutar una consulta de actualización por la que, todos los productos de la tabla PRODUCTOS_NEPTUNO que pertenecen al proveedor cuyo IDPROVEEDOR sea el número 1 pasen a mostrar el valor SI en 
+el campo SUSPENDIDO. 
+b. Ejecutar una consulta de datos anexados por la que, todos los productos que ahora se encuentran suspendidos en la tabla PRODUCTOS_NEPTUNO se copien en 
+la tabla PRODUCTOS_SUSPENDIDOS. 
+c. Ejecutar una consulta de eliminación
+por la que, todos los productos de la tabla PRODUCTOS_NEPTUNO que fueron copiados, se eliminen de la tabla PRODUCTOS_SUSPENDIDOS. 
+
+Actividad 4.4
+1. En la etapa anterior, se creó una tabla nueva con el nombre PRODUCTOS_SUSPENDIDOS y se copió en ella, todos los productos que se encontraban suspendidos de la tabla PRODUCTOS_NEPTUNO. Sin embargo, estos registros se copiaron de una tabla a la otra; es decir, aún se encuentran cargados en la tabla PRODUCTOS_NEPTUNO. 
+Por lo tanto, llevar a cabo una consulta
+de eliminación por la que los productos suspendidos se eliminen de la tabla PRODUCTOS_NEPTUNO. Al ejecutar esta consulta deberían eliminarse de la tabla PRODUCTOS_NEPTUNO 8 registros. 
+
+Actividad 4.5
+
+Parte 1
+1.	Generar una consulta de actualización para lograr que todos los títulos de las canciones y los nombres de los artistas de la tabla TOP_SPOTIFY queden cargados en la tabla en mayúsculas. 
+2.	Agregar a la tabla TOP_SPOTIFY una columna llamada PERMANENCIA. Completar la columna con la cantidad de años (al año actual) de permanencia de cada canción dentro de la plataforma digital. 
+3. Crear una tabla nueva con el nombre ÚLTIMOS_LANZAMIENTOS a partir de la tabla TOP_SPOTIFY tomando todos los campos de la tabla original. Volcar en la tabla nueva todas aquellas canciones que tengan 3 años o menos de permanencia en la plataforma digital. Una vez copiados los registros correspondientes en la tabla nueva, eliminarlos de la tabla original (TOP_SPOTIFY). 
+4. Agregar el siguiente registro a la tabla TOP_SPOTIFY: 
+ID: 610
+Título: GOD CONTROL Artista: MADONNA Género: POP
+Año: 2018 Permanencia: 3 
+5. Copiar a la tabla ÚLTIMOS_LANZAMIENTOS todas aquellas canciones que tengan 3 años o menos de permanencia en la plataforma digital. Una vez copiados los registros en la tabla nueva, eliminarlos de la tabla original (TOP_SPOTIFY). 
+
+Parte 2
+1.	Generar una consulta de actualización en la que se modifique el nombre del autor de apellido ECHEVERRÍA por Esteban. Tener en cuenta que se debe modificar el nombre de este autor y no su apellido. 
+2.	Agregar a la tabla EMPLEADOS una columna con el nombre PERMANENCIA. Completar
+la columna con la antigüedad (expresada en años) de cada empleado, tomando como base la fecha de ingreso de cada uno de ellos. 
+3. Agregar a la tabla LIBROS una columna con el nombre PRECIO_PÚBLICO. A continuación, completar la columna con el precio de venta al público de cada libro agregándole un 21% en concepto de IVA a los precios originales. Mantener un máximo de 2 decimales. 
+
+Parte 3
+1. Generar una tabla nueva y nombrarla como EMPLEADOS_ANTERIORES, a partir de la tabla EMPLEADOS. Tomar todos los campos de la tabla original. Luego, volcar en la tabla nueva los empleados cuyos apellidos sean THOMAS, PEREIRA y DEVO. Una vez copiados estos 3 empleados en la tabla nueva, eliminarlos de la tabla original (EMPLEADOS). 
+2. Copiar a la tabla EMPLEADOS_ANTERIORES al empleado de apellido CRUZ desde la tabla EMPLEADOS. Una vez copiado a la tabla nueva, eliminarlo de la original. 
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
