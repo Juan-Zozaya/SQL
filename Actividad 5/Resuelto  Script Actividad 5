@@ -1,0 +1,323 @@
+-- Actividad 5.1
+-- 1)
+select * from productos_neptuno
+where PrecioUnidad > (select avg (preciounidad) from productos_neptuno)
+order by nombrepreoducto;
+-- 2)
+select * from productos_neptuno where preciounidad > (select max(preciounidad) from productos_suspendidos)
+order by preciounidad desc;
+-- 3)
+select * from varones
+where semanas < (select min(semanas) from indeterminados);
+-- 4)
+select * from productos_neptuno
+where left(nombreproducto,1) = (select left(nombre_empleado,1) from empleados where idempleado=8)
+order by nombreproducto;
+-- 5)
+select * from productos_neptuno
+where idproveedor=(select max(idproveedor) from proveedores)
+order by nombreproducto;
+-- 6)
+select * from productos_neptuno 
+where nombrecategoria='bebidas' and preciounidad>
+(select max(preciounidad) from productos_neptuno 
+where nombrecategoria='Condimentos');
+-- 7)
+Select * from mujeres
+where edad_madre > (select max(edad_madre) from varones);
+-- 8)
+select nombrecompania, ciudad, pais from clientes_neptuno
+where nombrecompania in (select nombrecompania from pedidos_neptuno
+where cargo > 500)
+order by nombrecompania;
+
+-- Actividad 5.2
+-- 1)
+Select idcliente, nombrecompania, ciudad, pais,
+case 
+when pais in ('Argentina','Brasil','Venezuela') then 'America del sur'
+when pais in ('Mexico','Usa','Canada') then 'America del norte'
+else 'Europa'
+end as Continente
+from clientes_neptuno
+order by continente, pais;
+-- 2)
+Select idpedido, nombrecompania, fechapedido, cargo,
+case
+when Cargo>700 then 'Excelente'
+when Cargo between 500 and 700 then 'Muy Bueno'
+when Cargo between 250 and 500 then 'Bueno'
+when Cargo between 50 and 250  then 'Regular'
+else 'Malo'
+end as 'Evaluacion'
+from pedidos_neptuno
+order by cargo desc;
+-- 3)
+select idproducto, nombreproducto, nombrecategoria, preciounidad,
+case 
+when preciounidad>100 then 'Deluxe'
+when preciounidad between 10 and 100 then 'Regular'
+when preciounidad <10 then 'Economico'
+end as 'Tipo'
+FROM PRODUCTOS_NEPTUNO
+order by preciounidad desc;
+-- Otra forma de escribirlo
+SELECT IDPRODUCTO, NOMBREPRODUCTO, NOMBRECATEGORIA, PRECIOUNIDAD,
+CASE
+WHEN PRECIOUNIDAD > 100 THEN 'DELUXE'
+WHEN PRECIOUNIDAD > 10 THEN 'REGULAR'
+ELSE 'ECONOMICO'
+END AS TIPO
+FROM PRODUCTOS_NEPTUNO
+ORDER BY PRECIOUNIDAD DESC;
+
+-- Actividad 5.3
+-- 1)
+select * from nacimientos;
+select * from varones where semanas <20
+union
+select * from mujeres where semanas <20
+union
+select * from indeterminados where semanas <20;
+-- 2)
+select * from varones where fecha like '%/09/%' AND semanas >40 
+and nacionalidad = 'Chilena' and estado_civil_madre='Casada'
+union
+select * from mujeres where fecha like '%/09/%' AND semanas >40 
+and nacionalidad = 'Chilena' and estado_civil_madre='Casada'
+union
+select * from indeterminados where fecha like '%/09/%' AND semanas >40 
+and nacionalidad = 'Chilena' and estado_civil_madre='Casada';
+-- 3)
+SELECT *FROM PRODUCTOS_NEPTUNO
+WHERE PRECIOUNIDAD > 80
+UNION
+SELECT * FROM PRODUCTOS_SUSPENDIDOS
+WHERE PRECIOUNIDAD > 80
+ORDER BY NOMBREPRODUCTO;
+
+
+
+
+
+
+
+-- 4)
+select *,
+case 
+when suspendido = 'no' then 'A la venta'
+when suspendido='SI' then 'SUSPENDIDO'
+END AS 'Condicion'
+from productos_neptuno where preciounidad >80
+union 
+select *,
+case 
+when suspendido = 'no' then 'A la venta'
+when suspendido='SI' then 'SUSPENDIDO'
+END AS 'Condicion'
+from productos_suspendidos where preciounidad>80
+order by nombreproducto asc;
+-- OTRA FORMA MAS SIMPLE DE ESCRIBIRLO
+SELECT *, 'A LA VENTA' AS CONDICION FROM PRODUCTOS_NEPTUNO
+WHERE PRECIOUNIDAD > 80
+UNION
+SELECT *, 'SUSPENDIDO' AS CONDICION FROM PRODUCTOS_SUSPENDIDOS
+WHERE PRECIOUNIDAD > 80
+ORDER BY NOMBREPRODUCTO;
+ 
+-- 5)
+Select * from productos_neptuno where nombrecategoria='Bebidas'
+union
+select * from productos_suspendidos where nombrecategoria='Bebidas'
+order by nombreproducto;
+-- 6)
+insert into productos_suspendidos
+select * from productos_neptuno where idproducto=43;
+select * from productos_suspendidos;
+-- 7)
+SELECT * FROM PRODUCTOS_NEPTUNO WHERE NOMBRECATEGORIA = 'BEBIDAS'
+UNION
+SELECT * FROM PRODUCTOS_SUSPENDIDOS WHERE NOMBRECATEGORIA = 'BEBIDAS'
+ORDER BY NOMBREPRODUCTO;
+-- 8)
+SELECT * FROM PRODUCTOS_NEPTUNO WHERE NOMBRECATEGORIA = 'BEBIDAS'
+UNION ALL
+SELECT * FROM PRODUCTOS_SUSPENDIDOS WHERE NOMBRECATEGORIA = 'BEBIDAS'
+ORDER BY NOMBREPRODUCTO;
+-- 9)
+set sql_safe_updates=0;
+delete from productos_suspendidos where idproducto=43;
+
+-- Actividad 5.4
+-- 1)
+create table Equipos
+( equipo varchar (20) primary key);
+-- 2)
+Insert into equipos values ('ARGENTINA'), ('BRASIL'), ('CHILE'), ('PARAGUAY'), ('URUGUAY'),
+('COLOMBIA'), ('ECUADOR'), ('PERÚ'), ('BOLIVIA'), ('VENEZUELA');
+ -- 3)
+ SELECT * FROM EQUIPOS as L CROSS JOIN EQUIPOS as V
+WHERE L.EQUIPO <> V.EQUIPO
+ORDER BY L.EQUIPO;
+ -- Otra forma mas ordenada y clara
+select
+l.equipo as Locales, 
+'VS',
+v.equipo as Visitante
+from equipos 
+as L cross join equipos as V
+where l.equipo<>v.equipo
+order by l.equipo;
+-- 4)
+ select 
+ P.nombreproducto,
+ E.nombre_empleado,
+ P.Idproducto
+ from productos_neptuno as P
+ inner join empleados as E on p.Idproducto=E.idempleado;
+
+-- Actividad 5.5
+-- 1)
+ select
+ P.nombrecontacto,
+ n.Idproducto,
+ n.nombreproducto,
+ n.preciounidad
+ from proveedores as p
+ join productos_neptuno as n on n.idproveedor=p.idproveedor
+ order by nombrecontacto, nombreproducto;
+ -- 2)
+ select
+ P.nombrecontacto,
+ n.Idproducto,
+ n.nombreproducto,
+ n.preciounidad
+ from proveedores as p, productos_neptuno as n where n.idproveedor=p.idproveedor
+ order by nombrecontacto, nombreproducto;
+ -- 3)
+select 
+c.empresa,
+p.numero_pedido,
+p.fecha_pedido,
+p.forma_pago
+from clientes as c 
+join pedidos as p on p.codigo_cliente=c.cod_cliente;
+-- 4)
+select 
+c.empresa,
+p.numero_pedido,
+p.fecha_pedido,
+p.forma_pago
+from clientes as c 
+join pedidos as p on p.codigo_cliente=c.cod_cliente
+where P.numero_pedido is null
+order by empresa;
+-- 5)
+select 
+c.empresa
+from clientes as c 
+join pedidos as p on p.codigo_cliente=c.cod_cliente
+where P.numero_pedido is null
+order by empresa;
+-- 6)
+SELECT * FROM PROVEEDORES AS P LEFT JOIN PRODUCTOS_NEPTUNO AS N
+ON P.IDPROVEEDOR = N.IDPROVEEDOR
+WHERE N.IDPRODUCTO IS NULL;
+-- 7)
+select * from proveedores as p right join productos_neptuno as n
+on p.idproveedor = n.idproveedor
+where p.idproveedor is null;
+
+-- Actividad 5.6
+-- Parte 1
+select artista, titulo from ultimoslanzamientos
+where ano =(select max(ano) from ultimoslanzamientos)
+order by artista, titulo;
+
+select titulo from top_spotify
+where artista = 'Lady gaga' and permanencia= (select max(permanencia) from top_spotify)
+order by titulo;
+
+
+select artista, titulo,
+case 
+when genero= 'POP' then 'POP'
+when genero ='Electro' or genero='House' then 'Electronica'
+else 'Otro'
+END AS 'Tipo'
+from top_spotify
+order by artista,titulo;
+-- Otra forma de escribirlo
+select artista, titulo,
+case 
+when genero like '%POP%' then 'POP'
+when genero like '%Electro%' or genero like '%House%' then 'Electronica'
+else 'Otro'
+END AS 'Tipo'
+from top_spotify
+order by artista,titulo;
+
+-- Parte 2
+select *, 'Anterior' as estado from top_spotify
+where titulo like '%Break%'
+union
+select *, 'Ultimo' as estado from ultimoslanzamientos
+where titulo like '%Break%'
+order by titulo;
+
+-- Parte 3
+-- 1)
+select * from libros
+where precio > (select avg(precio) from libros)
+order by titulo;
+-- 2)
+select * from libros 
+where categoria='Novelas' and precio > (select max(precio) from libros where categoria ='ensayos')
+order by precio desc;
+-- 3)
+select * from empleados
+where permanencia = (select max(permanencia) from empleados);
+-- 4)
+select * from empleados
+where puesto_id = (select max(puesto_id) from empleados);
+-- 5)
+select libro_id, titulo, categoria, precio_publico,
+case 
+when precio < 15 then 'Economico'
+when precio between 15 and 30 then 'regular'
+else 'Deluxe'
+end as 'Tipo'
+from libros
+where precio_publico is not null
+order by titulo;
+-- 6)
+select concat_ws(', ',nombre, apellido) as 'Empleado'
+from empleados
+where puesto_id = 9
+union
+select concat_ws(', ',nombre, apellido) as 'Empleado'
+ from empleados_anteriores
+where puesto_id = 9;
+-- 7)
+select v.libro_id, titulo, precio_publico, local_id,
+factura_nro, cantidad from libros as l join ventas as V
+on v.libro_id=l.libro_id
+order by titulo;
+-- 8)
+select v.libro_id, titulo, precio_publico, local_id,
+factura_nro, cantidad, round(precio_publico * cantidad,2) as 'Total'
+from libros as l join ventas as V
+on v.libro_id=l.libro_id
+order by L.titulo;
+-- 9)
+select titulo 
+from libros as l left join ventas as v
+on v.libro_id=l.libro_id
+where factura_nro is null
+order by titulo;
+-- Otra forma de hacerlo
+SELECT L.TITULO FROM LIBROS L LEFT JOIN VENTAS V
+ON L.LIBRO_ID = V.LIBRO_ID
+WHERE forma_pago IS NULL
+ORDER BY TITULO;
+ 
